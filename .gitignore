@@ -6,9 +6,11 @@
 *.user
 *.userosscache
 *.sln.docstates
+Libraries/UnityEngine.dll
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
+*.DotSettings
 
 # Build results
 [Dd]ebug/
