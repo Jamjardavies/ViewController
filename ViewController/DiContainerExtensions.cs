@@ -10,6 +10,7 @@ public static class DiContainerExtensions
         where TController : IController
     {
         container.BindAllInterfaces<TController>().To<TController>().AsSingle().NonLazy();
+		container.Bind<TController>().To<TController>().AsSingle().NonLazy();
     }
 
     public static void BindViewController<TView, TController>(this DiContainer container, GameObject viewPrefab)
