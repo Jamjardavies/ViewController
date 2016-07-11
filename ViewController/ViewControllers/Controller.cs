@@ -20,7 +20,7 @@ namespace Jamjardavies.Zenject.ViewController
         public abstract void Initialise();
         public abstract void OnDestroy();
 
-        public class TransientFactory : IFactory<System.Type, Controller>
+        public class TransientFactory : IFactory<System.Type, IController>
         {
             [Inject]
             private DiContainer m_container = null;
@@ -31,12 +31,12 @@ namespace Jamjardavies.Zenject.ViewController
                 // #JD 09/05/2016: This is required for IL2CPP.
             }
 
-            public Controller Create(System.Type type)
+            public IController Create(System.Type type)
             {
                 return Create(type, null);
             }
 
-            public Controller Create(System.Type type, params object[] args)
+            public IController Create(System.Type type, params object[] args)
             {
                 // #JD 17/03/2016: Only create if we have the controller bound.
                 if (!m_container.HasBinding(new InjectContext(m_container, type)))
@@ -46,10 +46,10 @@ namespace Jamjardavies.Zenject.ViewController
 
                 if (args == null)
                 {
-                    return (Controller)m_container.Instantiate(type);
+                    return (IController)m_container.Instantiate(type);
                 }
 
-                return (Controller)m_container.Instantiate(type, args);
+                return (IController)m_container.Instantiate(type, args);
             }
         }
     }
